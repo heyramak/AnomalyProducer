@@ -3,6 +3,7 @@ package io.heyram.producer
 
 object TransactionKafkaEnum extends  Enumeration{
 
+  val id = "id"
   val trans_time = "timestamp"
   val duration = "duration"
   val protocol_type = "protocol_type"

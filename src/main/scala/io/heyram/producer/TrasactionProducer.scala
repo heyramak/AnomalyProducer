@@ -52,10 +52,11 @@ object TrasactionProducer {
 
       val obj: JsonObject = new JsonObject
       val ts: String = time.LocalDateTime.now().toString
-
+      def uuid = java.util.UUID.randomUUID.toString
 
 
       //println("Transaction Details:" + record.get(0),record.get(1),record.get(2),record.get(3),timestamp, record.get(7),record.get(8),record.get(9), record.get(10), record.get(11))
+      obj.addProperty(TransactionKafkaEnum.id, uuid)
       obj.addProperty(TransactionKafkaEnum.trans_time, ts)
       obj.addProperty(TransactionKafkaEnum.duration, record.get(0))
       obj.addProperty(TransactionKafkaEnum.protocol_type, record.get(1))
