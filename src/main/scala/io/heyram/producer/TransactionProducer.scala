@@ -117,7 +117,7 @@ object TransactionProducer {
     }
   }
 
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
 
     applicationConf = ConfigFactory.parseFile(new File(args(0)))
     load()
