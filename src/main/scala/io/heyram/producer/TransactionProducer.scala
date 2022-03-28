@@ -49,8 +49,6 @@ object TransactionProducer {
       val obj: JsonObject = new JsonObject
 
 
-
-      //println("Transaction Details:" + record.get(0),record.get(1),record.get(2),record.get(3),timestamp, record.get(7),record.get(8),record.get(9), record.get(10), record.get(11))
       obj.addProperty(TransactionKafkaEnum.id, record.get(0))
       obj.addProperty(TransactionKafkaEnum.duration, record.get(1))
       obj.addProperty(TransactionKafkaEnum.protocol_type, record.get(2))

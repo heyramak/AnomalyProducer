@@ -1,6 +1,6 @@
 { "type": "record",
   "namespace" : "intrusion.detection.avro",
-  "name": "Detection",
+  "name": "Transaction",
   "fields": [
     {"name": "id", "type": "string"},
     {"name": "duration", "type": "double"},
