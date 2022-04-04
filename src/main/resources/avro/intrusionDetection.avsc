@@ -3,6 +3,7 @@
   "name": "Transaction",
   "fields": [
     {"name": "id", "type": "string"},
+   // {"name": "timestamp" , "type" : "string"},
     {"name": "duration", "type": "double"},
     {"name": "protocol_type", "type": "string"},
     {"name": "service", "type": "string"},
@@ -43,8 +44,8 @@
     {"name": "dst_host_serror_rate", "type": "double"},
     {"name": "dst_host_srv_serror_rate", "type": "double"},
     {"name": "dst_host_rerror_rate", "type": "double"},
-    {"name": "dst_host_srv_rerror_rate", "type": "double"},
-    {"name": "xattack", "type": "double"}
+    {"name": "dst_host_srv_rerror_rate", "type": "double"}
+
 
   ]
 }

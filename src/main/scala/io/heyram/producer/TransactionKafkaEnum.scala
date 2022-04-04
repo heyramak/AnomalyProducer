@@ -4,6 +4,7 @@ package io.heyram.producer
 object TransactionKafkaEnum extends  Enumeration{
 
   val id = "id"
+  //val timestamp = "timestamp"
   val duration = "duration"
   val protocol_type = "protocol_type"
   val service = "service"
@@ -45,7 +46,6 @@ object TransactionKafkaEnum extends  Enumeration{
   val dst_host_srv_serror_rate = "dst_host_srv_serror_rate"
   val dst_host_rerror_rate = "dst_host_rerror_rate"
   val dst_host_srv_rerror_rate = "dst_host_srv_rerror_rate"
-  val xattack = "xattack"
   val kafka_partition = "partition"
   val kafka_offset = "offset"
 

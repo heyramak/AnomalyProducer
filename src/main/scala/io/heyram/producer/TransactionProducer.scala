@@ -6,10 +6,11 @@ import java.util
 import com.google.gson.{Gson, JsonObject}
 import com.typesafe.config.{Config, ConfigFactory}
 import org.apache.commons.csv.{CSVFormat, CSVParser, CSVRecord}
-
+import java.util.UUID
 import java.nio.charset.Charset
 import org.apache.kafka.clients.producer._
-
+import java.security.MessageDigest
+import java.time
 
 
 object TransactionProducer {
@@ -42,14 +43,24 @@ object TransactionProducer {
     val gson: Gson = new Gson
     val csvIterator = getCsvIterator(fileName)
     val rand: Random = new Random
-
+    def convertBytesToHex(bytes: Seq[Byte]): String = {
+      val sb = new StringBuilder
+      for (b <- bytes) {
+        sb.append(String.format("%02x", Byte.box(b)))
+      }
+      sb.toString
+    }
     while (csvIterator.hasNext) {
       val record = csvIterator.next()
 
       val obj: JsonObject = new JsonObject
+      val salt = MessageDigest.getInstance("SHA-256")
+      salt.update(UUID.randomUUID.toString.getBytes("UTF-8"))
+      val digest = convertBytesToHex(salt.digest)
+     // val s: String = time.LocalDateTime.now().toString
 
-
-      obj.addProperty(TransactionKafkaEnum.id, record.get(0))
+      obj.addProperty(TransactionKafkaEnum.id, digest)
+     // obj.addProperty(TransactionKafkaEnum.timestamp, s)
       obj.addProperty(TransactionKafkaEnum.duration, record.get(1))
       obj.addProperty(TransactionKafkaEnum.protocol_type, record.get(2))
       obj.addProperty(TransactionKafkaEnum.service, record.get(3))
@@ -91,7 +102,7 @@ object TransactionProducer {
       obj.addProperty(TransactionKafkaEnum.dst_host_srv_serror_rate, record.get(39))
       obj.addProperty(TransactionKafkaEnum.dst_host_rerror_rate, record.get(40))
       obj.addProperty(TransactionKafkaEnum.dst_host_srv_rerror_rate, record.get(41))
-      obj.addProperty(TransactionKafkaEnum.xattack, record.get(42))
+
 
 
       val json: String = gson.toJson(obj)
