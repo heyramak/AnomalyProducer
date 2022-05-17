@@ -57,10 +57,10 @@ object TransactionProducer {
       val salt = MessageDigest.getInstance("SHA-256")
       salt.update(UUID.randomUUID.toString.getBytes("UTF-8"))
       val digest = convertBytesToHex(salt.digest)
-     // val s: String = time.LocalDateTime.now().toString
+     val s: String = time.LocalDateTime.now().toString
 
       obj.addProperty(TransactionKafkaEnum.id, digest)
-     // obj.addProperty(TransactionKafkaEnum.timestamp, s)
+      obj.addProperty(TransactionKafkaEnum.timestamp, s)
       obj.addProperty(TransactionKafkaEnum.duration, record.get(1))
       obj.addProperty(TransactionKafkaEnum.protocol_type, record.get(2))
       obj.addProperty(TransactionKafkaEnum.service, record.get(3))
